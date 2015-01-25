@@ -16,3 +16,5 @@ The script will read in the training and test datasets together with the labels 
 Furthermore, the script will select only those variables which contain 'mean()' or 'std()' in their name. Then it will aggregate the data, calculating the mean of each variable for each activity and each subject.
 
 The resulting tidy dataset is written out to the text file 'tidy_dataset.txt' in the csv format.
+
+The file 'Cookbook.txt' describes the variables included in the tidy dataset.
