@@ -65,4 +65,4 @@ names(X_aggregated)[1] <- 'Activity'
 names(X_aggregated)[2] <- 'Subject'
 
 # write out to file
-write.table(X_aggregated, file = "tidy_dataset.csv", sep=",", row.name=FALSE)
+write.table(X_aggregated, file = "tidy_dataset.txt", sep=",", row.name=FALSE)
