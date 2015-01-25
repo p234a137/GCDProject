@@ -3,6 +3,7 @@
 ## Getting and Cleaning Data Course Course Project
 
 The analysis is performed by the script 'run_analysis.R'. You can run it like this from inside R:
+
 `
 source("run_analysis.R")
 `
