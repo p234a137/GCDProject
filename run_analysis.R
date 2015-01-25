@@ -1,11 +1,14 @@
 
+# download sample, unless it is there already
+fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+fileName <- "UCI HAR Dataset.zip"
+if(!file.exists(fileName)){
+  download.file(fileUrl, destfile = fileName, method = "curl")
+}
 
-# Instructions:
-# Here are the data for the project: 
-# wget "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
-# unzip -t getdata%2Fprojectfiles%2FUCI\ HAR\ Dataset.zip
-list.files("UCI HAR Dataset/")
-
+# unzip sample
+unzip(fileName)
+#list.files("UCI HAR Dataset/")
 
 # activites
 Activity_names = c("WALKING", "WALKING_UPSTAIRS", "WALKING_DOWNSTAIRS", "SITTING", "STANDING", "LAYING")
@@ -29,7 +32,7 @@ y_test <- Activity_names[y_test] # translate to activity names
 X_test$Activity <- y_test
 X_test$Subject  <- s_test
 
-# X_all <- rbind(X_train, X_test)
+# merged data
 X_all <- merge(X_train, X_test, all = T)
 
 # 2- Extracts only the measurements on the mean and standard deviation for each measurement.
@@ -50,13 +53,6 @@ X_selected <- X_all[selected_features]
 # 5- From the data set in step 4, creates a second, independent tidy data set with the average
 # of each variable for each activity and each subject.
 
-# # reshape the dataset
-# library(reshape2)
-# X_melt <- melt(X_selected, id=c('Activity','Subject'), measure.vars = selected_features[1:66])
-# # cast the data
-# X_summary1 <- dcast(X_melt, Activity ~ variable, mean)
-
-
 # use aggregate
 X_aggregated <-aggregate(X_selected[,1:68], by=list(X_selected$Activity, X_selected$Subject),
                     FUN=mean, na.rm=TRUE)[,1:68]
@@ -69,4 +65,4 @@ names(X_aggregated)[1] <- 'Activity'
 names(X_aggregated)[2] <- 'Subject'
 
 # write out to file
-write.table(X_aggregated, file = "UCI HAR Dataset/tidy_dataset.csv", sep=",", row.name=FALSE)
+write.table(X_aggregated, file = "tidy_dataset.csv", sep=",", row.name=FALSE)
