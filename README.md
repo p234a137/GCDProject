@@ -1,5 +1,6 @@
 # GCDProject
-Getting and Cleaning Data Course Course Project
+
+## Getting and Cleaning Data Course Course Project
 
 The analysis is performed by the script 'run_analysis.R'. You can run it like this from inside R:
 `
@@ -7,7 +8,7 @@ source("run_analysis.R")
 `
 
 
-First the script will download the UCI HAR Datasetif it is not in the directory already, then unzip it.
+First the script will download the UCI HAR dataset if it is not in the directory already, then unzip it.
 
 The script will read in the training and test datasets together with the labels for activities and IDs for the subjects. It will add variables (columns) to the datasets with the activities and IDs. Then the script will merge both training and test datasets and add descriptive variable names from the 'UCI HAR Dataset/features.txt' file.
 
